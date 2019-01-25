@@ -176,7 +176,7 @@ class GoDate extends Component {
         for(var i = 0; i<slide.length; i++){
             slide[i].style.transition = "left "+ speed+ "s";
         }
-        //處理resize 1.小變大格子要重新偵測   2.不要transition(不要滑動)   3. resize(w>768)index重新歸零
+        //處理resize 1.小變大格子要重新偵測   2.不要transition(不要滑動)   3. resize(w>768)index重新歸零 4.(大到小index=0 )
         var that = this; 
         window.addEventListener("resize",function(){
             var width = document.documentElement.clientWidth;
@@ -190,6 +190,12 @@ class GoDate extends Component {
                 index : 0
             });              
             }else{
+
+                var arrowLeft =document.getElementsByClassName("arrow left"); 
+                arrowLeft[0].classList.add("disable");
+                var arrowRight =document.getElementsByClassName("arrow right");
+                arrowRight[0].classList.remove("disable");
+                
                 for(var i = 0; i<slide.length; i++){
                     slide[i].style.transition = "left "+ speed+ "s";
                 }        
