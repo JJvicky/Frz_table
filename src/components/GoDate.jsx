@@ -151,19 +151,24 @@ class GoDate extends Component {
           row_id.push(divid7*7+i);
           col_id.push(7*i+ reminder)
       }
-      
+ 
       row_id.map((item)=>{
-          return(
-          document.getElementById(item).setAttribute("class","interchange "+this.getShow())  
+          var sibling = document.getElementById(item);
+          return(   
+        //   document.getElementById(item).setAttribute("class","interchange "+this.getShow())  
+   
+          sibling.classList.add("interchange")
           )
       })
       col_id.map((item)=>{
+        var sibling = document.getElementById(item);
           return(
-          document.getElementById(item).setAttribute("class","interchange "+this.getShow())  
+        //   document.getElementById(item).setAttribute("class","interchange "+this.getShow())  
+        sibling.classList.add("interchange")
           )
       })
-      document.getElementById(id).setAttribute("class","hover "+this.getShow());  
-      
+      var ele = document.getElementById(id);
+      ele.classList.add("hover") 
       // click 後callback function
       this.props.whenClick(target); 
       
