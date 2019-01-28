@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../Style/main.css';
-import '../Style/components.css'
+import '../Style/main.scss';
+import '../Style/components.scss'
 
 class Title extends Component {
     state = {  }

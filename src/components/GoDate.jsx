@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../Style/main.css';
-import '../Style/components.css';
+import '../Style/main.scss';
+import '../Style/components.scss';
 import ticketInfo from '../json/ticketInfo.json';
 import PropTypes from 'prop-types';
 
@@ -54,7 +54,7 @@ class GoDate extends Component {
         var index = this.state.index; 
         var showPercent = this.getShowPercent();
         
-        //判斷初始畫面的箭頭
+        //判斷下一個畫面的箭頭
         if( index >= 0 ){
             arrowLeft[0].classList.remove("disable");
             arrowRight[0].classList.remove("disable");
@@ -79,6 +79,7 @@ class GoDate extends Component {
            if( (index + this.props.show) == 7 ){
             arrowRight[0].classList.add("disable");
         }
+        
 
         this.setState({
             index : index
@@ -91,7 +92,7 @@ class GoDate extends Component {
         var arrowRight =document.getElementsByClassName("arrow right");
         var arrowLeft =document.getElementsByClassName("arrow left"); 
         
-        //初始畫面的箭頭
+        //判斷下一個畫面的箭頭
           if(index > 0){  
           arrowLeft[0].classList.remove("disable");
           arrowRight[0].classList.remove("disable");
