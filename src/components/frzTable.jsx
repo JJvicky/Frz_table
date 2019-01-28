@@ -9,6 +9,11 @@ import '../Style/components.scss'
 class FrzTable extends Component {
     constructor(props){
         super(props);
+        
+    }
+    getShow = () => {
+        let show = this.props.show;
+        return 'show' + show;
     }
     render() { 
         const slide = this.props.slide;
@@ -18,8 +23,8 @@ class FrzTable extends Component {
         console.log(speed);
         return ( <div className="frzTable">
         <Title />
-        <BackDate slide = {slide} show= {show} speed={speed} />
-        <GoDate slide = {slide} show= {show} speed={speed} whenClick = {this.props.whenClick}/>
+        <BackDate slide = {slide} show= {show} speed={speed} getShow={this.getShow}/>
+        <GoDate slide = {slide} show= {show} speed={speed} whenClick = {this.props.whenClick} getShow={this.getShow}/>
         </div> );
     }
 }

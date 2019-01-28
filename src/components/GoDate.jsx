@@ -30,11 +30,6 @@ class GoDate extends Component {
         speed: 0.3
     };
 
-    //判斷div/size
-    getShow = () => {
-        let show = this.props.show;
-        return 'show' + show;
-    }
     getShowPercent = () => {
         var showPercent;
         switch (this.props.show) {
@@ -59,13 +54,6 @@ class GoDate extends Component {
         var index = this.state.index;
         var showPercent = this.getShowPercent();
 
-        //判斷下一個畫面的箭頭
-        // if (index >= 0) {
-        //     arrowLeft[0].classList.remove("disable");
-        //     arrowRight[0].classList.remove("disable");
-        // } else {
-        //     arrowLeft[0].classList.add("disable");
-        // }
         if (index >= 0) {
           arrowLeft = true;
           arrowRight = true;
@@ -155,8 +143,8 @@ class GoDate extends Component {
     toggleItem = (e) => {   
         const target = e.target;
         const id = target.getAttribute("id");
-        const divid7 = Math.floor(id / 7);
-        const reminder = id % 7;
+        const divid7 = Math.floor(id / 7);  // find #row
+        const reminder = id % 7;   //find #col
         this.setState({
             row: divid7,
             col: reminder,
@@ -223,11 +211,11 @@ class GoDate extends Component {
                                             <span>{arr1.goDate}</span>
                                         </div>
                                     </td>
-                                    <td >
-                                        <div className={(this.state.row == index1) ? 'slide flex interchange' : 'slide flex'} style={{transition: speed + 's'}}>
+                                    <td className={(this.state.row == index1) ? 'interchange':''} >
+                                        <div className="slide flex" style={{transition: speed + 's'}}>
                                             {arr1.detail.map((arr2, index2) => {
                                                 let interchange = (this.state.col == index2) ? "interchange" : '';
-                                                let cheapest = arr2.cheapest ? "cheapest " + this.getShow() : this.getShow();
+                                                let cheapest = arr2.cheapest ? "cheapest " + this.props.getShow() : this.props.getShow();
                                                 let hover = (this.state.target == (index1 * 7 + index2)) ? "hover" :'';
                                             
                                                 return (
