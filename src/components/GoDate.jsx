@@ -54,12 +54,6 @@ class GoDate extends Component {
         var index = this.state.index;
         var showPercent = this.getShowPercent();
 
-        if (index >= 0) {
-          arrowLeft = true;
-          arrowRight = true;
-        } else {
-          arrowLeft = false;
-        }
         //判斷移動格數/distance
         if ((index + this.props.slide + this.props.show) <= 7) {
             index = index + this.props.slide
@@ -74,10 +68,13 @@ class GoDate extends Component {
             // slide[i].style.transform ="translateX(-"+slideDistance+")";
         }
 
-        // //最後畫面的箭頭
-        // if ((index + this.props.show) == 7) {
-        //     arrowRight[0].classList.add("disable");
-        // }
+        //結束畫面的箭頭
+        if (index >= 0) {
+            arrowLeft = true;
+            arrowRight = true;
+          } else {
+            arrowLeft = false;
+          }
         if ((index + this.props.show) == 7) {
            arrowRight = false
         }
@@ -94,15 +91,6 @@ class GoDate extends Component {
         var index = this.state.index;
         var showPercent = this.getShowPercent();
 
-        //判斷下一個畫面的箭頭
-        // if (index > 0) {
-        //     arrowLeft[0].classList.remove("disable");
-        //     arrowRight[0].classList.remove("disable");
-        // }
-        if( index > 0){
-            arrowLeft = true;
-            arrowRight = true;
-        }
         //判斷移動格數
         if (index - this.props.slide <= 0) {
             index = 0;
@@ -115,7 +103,11 @@ class GoDate extends Component {
             slide[i].style.left = "-" + slideDistance + "%";
         }
 
-        //判斷結束畫面的箭頭
+        //判斷結束畫面的箭頭 
+        if( index > 0){
+            arrowLeft = true;
+            arrowRight = true;
+        }
         if (index == 0) {
             arrowLeft = false;
         }
@@ -156,39 +148,19 @@ class GoDate extends Component {
     }
 
     // componentDidMount = () => {
-    //     var slide = document.querySelectorAll(".slide");
-    //     var speed = this.props.speed;
-    //     //處理客製transition
-    //     for (var i = 0; i < slide.length; i++) {
-    //         slide[i].style.transition = "left " + speed + "s";
-    //     }
-        //處理resize 1.小變大格子要重新偵測   2.不要transition(不要滑動)   3. resize(w>768)index重新歸零   4.(大到小index=0 )
-        // var that = this;
-        //     window.addEventListener("resize",function(){
-        //         var width = document.documentElement.clientWidth;
-        //         if(width>768){
-        //             // var slide = document.querySelectorAll(".slide");
-        //             for(var i = 0; i<slide.length; i++){
-        //                 slide[i].style.left = 0;
-        //                 slide[i].style.transition = "left "+ 0 + "s";
-        //             }  
-        //            that.setState({
-        //             index : 0
-        //         });              
-        //         }else{
 
-        //             var arrowLeft =document.getElementsByClassName("arrow left"); 
-        //             arrowLeft[0].classList.add("disable");
-        //             var arrowRight =document.getElementsByClassName("arrow right");
-        //             arrowRight[0].classList.remove("disable");
-
-        //             for(var i = 0; i<slide.length; i++){
-        //                 slide[i].style.transition = "left "+ speed+ "s";
-        //             }        
-        //         }
-
-        // })
-    //}
+    //     //處理resize 1.小變大格子要重新偵測   2.不要transition(不要滑動)   3. resize(w>768)index重新歸零   4.(大到小index=0 )
+    //     var that = this;
+    //         window.addEventListener("resize",function(){
+    //             var width = document.documentElement.clientWidth;
+    //             if(width>768){
+    //                 // var slide = document.querySelectorAll(".slide");
+    //                that.setState({
+    //                 index : 0
+    //             });              
+    //             }
+    //     })
+    // }
 
 
     render() {
