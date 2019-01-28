@@ -4,6 +4,11 @@ $hover-border: #fe8b88;
 $hover-bg:#fff9e3;
 $append : #999;
 $cheapest :#ff8e26;
+@mixin bg-grey-info{
+	background-color: #eaedf2;
+    color: #666;
+    border-bottom : 1px solid $border;
+}
 @mixin hover {
     border: 1px solid $hover-border;
     background: $hover-bg
@@ -35,9 +40,9 @@ $td-width : 88px;
 }
 
 .date{
-    height:100%;
-    border-right: 1px solid $border;
-    border-left: 1px solid $border; 
+     height:100%;
+    // border-right: 1px solid $border;
+    // border-left: 1px solid $border; 
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -46,6 +51,7 @@ $td-width : 88px;
         display: block;
         text-align: center;
         padding: 0 3px;
+        
    }
    span:nth-child(2){
         text-align: left;
@@ -59,27 +65,40 @@ $td-width : 88px;
 
 table{
     width: 100%;
+    tr{
+        height:auto;
+    }
      td{
         padding: 0;
+        font-size: 14px;
+        overflow: hidden;
     }        
     td:first-child{
         width: $td-width;
-        height: 50px;
+        max-height: 50px;
+        border-right: 1px solid $border;
+        border-left: 1px solid $border; 
+        @include bg-grey-info;
+        vertical-align: middle;
     }
     td:nth-child(2){
         width: calc(100% - 88px);
         position: relative;
         overflow: hidden;
+        height: 50px;
+        color: #666;
+        border-bottom : 1px solid $border;
     }
 }
 
 .slide{
     width: 100%;
     height: 100%;
-    position: absolute; 
+    // position: absolute; 
     top: 0;
-    transition: 0;
-      
+    transition: left 0;
+    left:0 ; 
+
     div{
         min-width: calc(100% /7); 
         border-right: 1px solid $border;
@@ -96,14 +115,19 @@ table{
             }
         }
     }
+    div.interchange{
+        background-color:#f1f1f1;
+    }    
+}
 
-    
+td .interchange{
+    background-color:#f1f1f1;
 }
 
 .goDate{
     position: relative;
     .slide div{
-        border-bottom : 1px solid $border;  
+        // border-bottom : 1px solid $border;  
          .hover{
            @include hover;
          }
@@ -111,31 +135,27 @@ table{
            @include hover;
          }
     }
-    .date{
-        border-bottom : 1px solid $border;
-    }
-
 }
-
+.slide div.hover{
+    @include hover;
+}
 .backDate .slide div{
     background-color: #eaedf2;
 }
-.cheapest:after {
+.slide div.cheapest:after {
     content: "";
     height: 0;
     width: 0;
     position: absolute;
     top: -1px;
     left: 0;
-    border{
-         top: 10px solid $cheapest;
-         right: 10px solid transparent;
-         bottom: 10px solid transparent;
-         left: 10px solid $cheapest;
+    border-top: 10px solid $cheapest;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid $cheapest;
     }
    
-}
-.cheapest:before{
+.slide div.cheapest:before{
     content: "\6700\4FBF\5B9C";
     position: absolute;
     top: 0;
@@ -168,6 +188,7 @@ element.style {
 
 @media screen and (max-width: 768px){
     .slide{
+        position: absolute; 
         left:0;
         /* transition : 0s; */ 
         /* RWD各種版面 */
@@ -199,14 +220,17 @@ element.style {
         text-align: center;
     }
     .arrow.left{
-        left:88px;
+        left:89px;
     }
     .arrow.right{
-        right: 1px;
+        right: 0px;
     }
     .arrow>i {
         display: block;
         font-size: 14px;
+    }
+    .arrow.disable{
+        display: none;
     }
 
 
