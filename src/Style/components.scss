@@ -236,8 +236,84 @@ element.style {
     .arrow.disable{
         display: none;
     }
-
-
+    $show1 : 100%;
+    $show2 : 50%;
+    $show3 :33.3%;
+    $show4 : 25%;
+    .show1-slide1{
+            &-0{ left: 0;}
+            &-1{ left: - $show1}
+            &-2{ left: - 2*$show1}
+            &-3{ left: - 3*$show1}
+            &-4{ left: - 4*$show1}
+            &-5{ left: - 5*$show1}
+            &-6{ left: - 6*$show1} 
+        }
+    
+    .show2-slide1{
+            &-0{ left: 0;}
+            &-1{ left: - $show2}
+            &-2{ left: - 2*$show2}
+            &-3{ left: - 3*$show2}
+            &-4{ left: - 4*$show2}
+            &-5{ left: - 5*$show2}
+            &-6{ left: - 6*$show2} 
+    }
+    .show2-slide2{
+            &-0{ left: 0;}
+            &-1{ left: - $show2}
+            &-2{ left: - 2*$show2}
+            &-3{ left: - 3*$show2}
+            &-4{ left: - 4*$show2}
+            &-5{ left: - 5*$show2}
+    } 
+            
+    .show3-slide1{
+            &-0{ left: 0;}
+            &-1{ left: - $show3}
+            &-2{ left: - 2*$show3}
+            &-3{ left: - 3*$show3}
+            &-4{ left: - 4*$show3}  
+        }
+    .show3-slide2{
+            &-0{ left: 0;}
+            &-1{ left: - $show3}
+            &-2{ left: - 2*$show3}
+            &-3{ left: - 3*$show3}
+            &-4{ left: - 4*$show3}  
+        }
+    .show3-slide3{
+            &-0{ left: 0;}
+            &-1{ left: - $show3}
+            &-2{ left: - 2*$show3}
+            &-3{ left: - 3*$show3}
+            &-4{ left: - 4*$show3}  
+        } 
+    
+    .show4-slide1{
+            &-0{ left: 0;}
+            &-1{ left: - $show4}
+            &-2{ left: - 2*$show4}
+            &-3{ left: - 3*$show4}   
+        }
+    .show4-slide2{
+            &-0{ left: 0;}
+            &-1{ left: - $show4}
+            &-2{ left: - 2*$show4}
+            &-3{ left: - 3*$show4}   
+        }
+    .show4-slide3{
+            &-0{ left: 0;}
+            &-1{ left: - $show4}
+            &-2{ left: - 2*$show4}
+            &-3{ left: - 3*$show4}   
+        }
+    .show4-slide4{
+            &-0{ left: 0;}
+            &-1{ left: - $show4}
+            &-2{ left: - 2*$show4}
+            &-3{ left: - 3*$show4}   
+        }
 }
 
 

@@ -18,13 +18,10 @@ class BackDate extends Component {
         speed : 0.3
     };
     
-    // getShow= () =>{
-    //     let show = this.props.show;
-    //     return 'show'+show ;
-    // }
-    
     render() {
         const speed = this.props.speed;
+        const stepClass = 'show'+this.props.show+'-slide' + this.props.slide +'-'+this.props.index;
+        const slideClass = 'slide flex '+ stepClass;
         return (
             <div className="backDate">
             <table>
@@ -37,7 +34,7 @@ class BackDate extends Component {
                       </div>    
                    </td>
                    <td>
-                       <div className="slide flex bg-grey-info transition" style={{transition: speed + 's'}}>
+                       <div className={slideClass} style={{transition: speed + 's'}}>
                        {ticketInfo.data[0].data[0].detail.map((arr1,index1)=>{
                             return(
                                  <div className={arr1.backDate.substr(0,5)== '01/01'? "newYear "+ this.props.getShow(): this.props.getShow() } key={index1}><span>{arr1.backDate}</span></div>  
