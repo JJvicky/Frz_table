@@ -17,7 +17,7 @@ class FrzTable extends Component {
         
     }
     getShow = () => {
-        let show = this.props.show;
+        let show = (this.props.show >= 4)? 4 :this.props.show;
         return 'show' + show;
     }
     
@@ -25,12 +25,14 @@ class FrzTable extends Component {
         var arrowRight = this.state.arrowRight;
         var arrowLeft = this.state.arrowRight;
         var index = this.state.index;
+        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
+        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
 
         //判斷最後index
-        if ((index + this.props.slide + this.props.show) <= 7) {
-            index = index + this.props.slide
+        if ((index + slide + show) <= 7) {
+            index = index + slide
         } else {
-            index = index + (7 - index - this.props.show);
+            index = index + (7 - index - show);
         }
 
         //結束畫面的箭頭
@@ -40,7 +42,7 @@ class FrzTable extends Component {
           } else {
             arrowLeft = false;
           }
-        if ((index + this.props.show) == 7) {
+        if ((index + show) == 7) {
            arrowRight = false
         }
         this.setState({
@@ -54,12 +56,13 @@ class FrzTable extends Component {
         var arrowRight = this.state.arrowRight;
         var arrowLeft = this.state.arrowRight;
         var index = this.state.index;
-
+        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
+        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
         // 判斷最後index
-        if (index - this.props.slide <= 0) {
+        if (index - slide <= 0) {
             index = 0;
         } else {
-            index = index - this.props.slide;
+            index = index - slide;
         }
         //判斷結束畫面的箭頭 
         if( index > 0){
@@ -68,24 +71,34 @@ class FrzTable extends Component {
         }
         if (index == 0) {
             arrowLeft = false;
+            arrowRight = true;
         }
-        if ((index + this.props.show) == 7) {
-            arrowRight = false;
-        }
+    
         this.setState({
             index: index,
             arrowLeft,
             arrowRight
         })
     }
+    componentDidMount = () => {
+    // PC to M : reset index to 0 
+        const that = this   
+        window.addEventListener("resize",function(){
+            var width = document.documentElement.clientWidth;
+            if(width>768){
+                that.setState({
+                index : 0
+            });              
+            }
+        });
+    }
+
     render() { 
-        const slide = this.props.slide;
-        const show = this.props.show;
+        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
+        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
         const speed = this.props.speed;
         const{arrowLeft,arrowRight,index}=this.state;
-        console.log("index="+this.state.index);
-      
-        console.log(speed);
+       
         return ( <div className="frzTable">
         <Title />
         <BackDate slide = {slide} show= {show} speed={speed} getShow={this.getShow} next={this.next} prev={this.prev} index={index}/>

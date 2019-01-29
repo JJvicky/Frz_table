@@ -54,21 +54,7 @@ class GoDate extends Component {
 
     }
 
-    // componentDidMount = () => {
-
-    //     //處理resize 1.小變大格子要重新偵測   2.不要transition(不要滑動)   3. resize(w>768)index重新歸零   4.(大到小index=0 )
-    //     var that = this;
-    //         window.addEventListener("resize",function(){
-    //             var width = document.documentElement.clientWidth;
-    //             if(width>768){
-    //                 // var slide = document.querySelectorAll(".slide");
-    //                that.setState({
-    //                 index : 0
-    //             });              
-    //             }
-    //     })
-    // }
-
+  
 
     render() {
         const arrowLeft = this.props.arrowLeft ? "arrow left" :"arrow left disable" ;
@@ -76,7 +62,6 @@ class GoDate extends Component {
         const speed = this.props.speed;
         const stepClass = 'show'+this.props.show+'-slide' + this.props.slide +'-'+this.props.index;
         const slideClass = 'slide flex '+ stepClass;
-        console.log(stepClass);
 
         return (
             <div className="goDate">
