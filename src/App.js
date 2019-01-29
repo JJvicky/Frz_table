@@ -3,10 +3,11 @@ import FrzTable from './components/frzTable';
 import './Style/main.scss';
 import PropTypes from 'prop-types';
 
+
 class App extends Component {
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     static propTypes = {
         show: PropTypes.number,
         slide: PropTypes.number,

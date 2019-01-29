@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
-import Title from './Title';
-import BackDate from './BackDate';
 import GoDate from './GoDate'
 import '../Style/main.scss';
-import '../Style/components.scss';
+import '../Style/components.1.scss';
 import PropTypes from 'prop-types';
 
+
+function Title(){
+    return(
+    <div className="title">
+    <h2>低價月曆</h2>
+    <div className="bar bg-grey-info"><span></span></div>
+    </div>
+    )
+}
 
 class FrzTable extends Component {
     constructor(props){
@@ -51,7 +58,7 @@ class FrzTable extends Component {
           } else {
             arrowLeft = false;
           }
-        if ((index + this.props.show) == 7) {
+        if ((index + this.props.show) === 7) {
            arrowRight = false
         }
         this.setState({
@@ -77,7 +84,7 @@ class FrzTable extends Component {
             arrowLeft = true;
             arrowRight = true;
         }
-        if (index == 0) {
+        if (index === 0) {
             arrowLeft = false;
             arrowRight = true;
         }
@@ -88,28 +95,18 @@ class FrzTable extends Component {
             arrowRight
         })
     }
-    componentDidMount = () => {
-    // PC to M版 : reset index to 0 
-        const that = this   
-        window.addEventListener("resize",function(){
-            var width = document.documentElement.clientWidth;
-            if(width>768){
-                that.setState({
-                index : 0
-            });              
-            }
-        });
-    }
-
+ 
+       
+  
     render() { 
         const show = this.props.show; 
         const slide = this.props.slide; 
         const speed = this.props.speed;
         const{arrowLeft,arrowRight,index}=this.state;
     
-        return ( <div className="frzTable">
-        <Title />
-        <BackDate slide = {slide} show= {show} speed={speed} getShow={this.getShow} next={this.next} prev={this.prev} index={index}/>
+        return ( 
+        <div className="frzTable">
+        {<Title />}
         <GoDate slide = {slide} show= {show} speed={speed} whenClick = {this.props.whenClick} getShow={this.getShow} arrowLeft={arrowLeft}
         arrowRight={arrowRight} index={index} next={this.next} prev={this.prev}/>
         </div> );
