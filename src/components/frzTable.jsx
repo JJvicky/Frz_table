@@ -3,7 +3,8 @@ import Title from './Title';
 import BackDate from './BackDate';
 import GoDate from './GoDate'
 import '../Style/main.scss';
-import '../Style/components.scss'
+import '../Style/components.scss';
+import PropTypes from 'prop-types';
 
 
 class FrzTable extends Component {
@@ -13,26 +14,34 @@ class FrzTable extends Component {
         index: 0,
         arrowRight :true ,
         arrowLeft : false
+    }     
     }
-        
-    }
+    static propTypes = {
+        index: PropTypes.number,
+        arrowRight: PropTypes.bool,
+        arrowLeft: PropTypes.bool,
+    };
+    static defaultProps = {
+        show: 4,
+        slide: 1,
+        speed: 0.3,
+    };
+    //M版display
     getShow = () => {
-        let show = (this.props.show >= 4)? 4 :this.props.show;
+        let show = this.props.show;
         return 'show' + show;
     }
-    
+    // next page
     next = () => {
         var arrowRight = this.state.arrowRight;
         var arrowLeft = this.state.arrowRight;
         var index = this.state.index;
-        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
-        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
 
         //判斷最後index
-        if ((index + slide + show) <= 7) {
-            index = index + slide
+        if ((index + this.props.slide + this.props.show) <= 7) {
+            index = index + this.props.slide
         } else {
-            index = index + (7 - index - show);
+            index = index + (7 - index - this.props.show);
         }
 
         //結束畫面的箭頭
@@ -42,7 +51,7 @@ class FrzTable extends Component {
           } else {
             arrowLeft = false;
           }
-        if ((index + show) == 7) {
+        if ((index + this.props.show) == 7) {
            arrowRight = false
         }
         this.setState({
@@ -50,19 +59,18 @@ class FrzTable extends Component {
             arrowLeft,
             arrowRight
         })
-
     }
+    // prev page
     prev = () => {
         var arrowRight = this.state.arrowRight;
         var arrowLeft = this.state.arrowRight;
         var index = this.state.index;
-        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
-        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
+        
         // 判斷最後index
-        if (index - slide <= 0) {
+        if (index - this.props.slide <= 0) {
             index = 0;
         } else {
-            index = index - slide;
+            index = index - this.props.slide;
         }
         //判斷結束畫面的箭頭 
         if( index > 0){
@@ -81,7 +89,7 @@ class FrzTable extends Component {
         })
     }
     componentDidMount = () => {
-    // PC to M : reset index to 0 
+    // PC to M版 : reset index to 0 
         const that = this   
         window.addEventListener("resize",function(){
             var width = document.documentElement.clientWidth;
@@ -94,11 +102,11 @@ class FrzTable extends Component {
     }
 
     render() { 
-        const show = (this.props.show >= 4)? 4 :this.props.show;  //maximun show=4
-        const slide = (show > this.props.slide)? this.props.slide : show ; //如果slide設定數字大於show, 則顯示show
+        const show = this.props.show; 
+        const slide = this.props.slide; 
         const speed = this.props.speed;
         const{arrowLeft,arrowRight,index}=this.state;
-       
+    
         return ( <div className="frzTable">
         <Title />
         <BackDate slide = {slide} show= {show} speed={speed} getShow={this.getShow} next={this.next} prev={this.prev} index={index}/>

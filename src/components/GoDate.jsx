@@ -16,15 +16,17 @@ class GoDate extends Component {
         }
     }
     static propTypes = {
-        show: PropTypes.number,
-        slide: PropTypes.number,
-        speed: PropTypes.number,
-        whenClick: PropTypes.func
+        target: PropTypes.number,
+        row: PropTypes.number,
+        col: PropTypes.number,
     };
     static defaultProps = {
         show: 4,
         slide: 1,
-        speed: 0.3
+        speed: 0.3,
+        index: 0,
+        arrowRight :true ,
+        arrowLeft : false
     };
 
   
@@ -37,6 +39,9 @@ class GoDate extends Component {
             if (!(counter % 3) && i != 0) { result.unshift(','); }
         }
         return result.join('');
+    }
+    textCheck = () =>{
+
     }
 
     toggleItem = (e) => {   
@@ -62,7 +67,7 @@ class GoDate extends Component {
         const speed = this.props.speed;
         const stepClass = 'show'+this.props.show+'-slide' + this.props.slide +'-'+this.props.index;
         const slideClass = 'slide flex '+ stepClass;
-
+        
         return (
             <div className="goDate">
                 <div className={arrowLeft} onClick={this.props.prev}><i class="fas fa-angle-left"></i></div>
@@ -78,15 +83,18 @@ class GoDate extends Component {
                                             <span>{arr1.goDate}</span>
                                         </div>
                                     </td>
-                                    <td className={(this.state.row == index1) ? 'interchange':''} >
+                                    <td  >
                                         <div className={slideClass} style={{transition: speed + 's'}}>
                                             {arr1.detail.map((arr2, index2) => {
-                                                let interchange = (this.state.col == index2) ? "interchange" : '';
+                                                let interchange_r = (this.state.row == index1) ? "interchange" : '';
+                                                let interchange_cl = (this.state.col == index2) ? "interchange" : '';
+                                                let interchange = interchange_r + interchange_cl;
                                                 let cheapest = arr2.cheapest ? "cheapest " + this.props.getShow() : this.props.getShow();
                                                 let hover = (this.state.target == (index1 * 7 + index2)) ? "hover" :'';
+                                                let changeSymbol = (String((arr2.price))==="--" ? <span>查看</span> : '--')
                                             
                                                 return (
-                                                    <div id={index1 * 7 + index2} className={`${interchange} ${cheapest} ${hover}`} key={index1 * 7 + index2} onClick={this.toggleItem} ref={this.clickTarget}><span>{Number(arr2.price) ? "$" : ''}{this.toThousands(arr2.price)}{Number(arr2.price) ? <span> 起</span> : ''}</span></div>)
+                                                    <div id={index1 * 7 + index2} className={`${interchange} ${cheapest} ${hover}`} key={index1 * 7 + index2} onClick={this.toggleItem} ref={this.clickTarget}><span>{Number(arr2.price) ? "$" : ''}{Number(arr2.price) ? this.toThousands(arr2.price) : changeSymbol}{Number(arr2.price) ? <span> 起</span> : ''}</span></div>)
                                             })}
 
                                         </div>

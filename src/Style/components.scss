@@ -90,9 +90,9 @@ table{
         border-bottom : 1px solid $border;
     }
 }
-td.interchange{
-    background-color:#f1f1f1;
-}
+// td.interchange{
+//     background-color:#f1f1f1;
+// }
 
 .slide{
     width: 100%;
@@ -123,7 +123,7 @@ td.interchange{
     // }    
 }
 
-td .interchange{
+.slide .interchange{
     background-color:#f1f1f1;
 }
 
@@ -136,6 +136,7 @@ td .interchange{
          }
          &:hover{
            @include hover;
+           cursor: pointer;
          }
     }
 }
