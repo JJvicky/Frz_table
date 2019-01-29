@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoDate from './GoDate'
 import '../Style/main.scss';
-import '../Style/components.1.scss';
+import '../Style/components.scss';
 import PropTypes from 'prop-types';
 
 

@@ -14,6 +14,10 @@ $cheapest :#ff8e26;
     background: $hover-bg
 }
 $td-width : 88px;
+$show1 : 100%;
+$show2 : 50%;
+$show3 :33.33%;
+$show4 : 25%;
 
 
 .flex{
@@ -97,18 +101,24 @@ table{
     background-color:#f1f1f1;
 }
 }
-
+// @media screen and (min-width: 768px){
+//     .slide div{
+//         width: calc(100% /7); 
+//     // position: relative; 
+//     }
+// }
 
 .slide{
+    position: absolute; 
+    left:0;
     width: 100%;
     height: 100%;
-    // position: absolute; 
     top: 0;
     transition: left 0;
-    left:0 ; 
-    
-    div{
-        min-width: calc(100% /7); 
+    @media screen and (min-width: 768px){
+    position: static;
+    }
+    div {
         border-right: 1px solid $border;
         height: 50px;
         display: flex;
@@ -116,29 +126,129 @@ table{
         position: relative; 
         flex-direction: column;
         border-bottom : 1px solid $border;
-
+        @media screen and (min-width: 768px){
+        min-width: calc(100% /7); 
+       
+        }
         >span{
             align-self: center;
             pointer-events: none;
             >span{
                 color:$append; 
-            }
+            } 
+        }
+        &:hover{
+            @include hover;
         }
     }
-    // div.interchange{
-    //     background-color:#f1f1f1;
-    // }    
+    div.cheapest:after {
+        content: "";
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -1px;
+        left: 0;
+        border-top: 10px solid $cheapest;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-left: 10px solid $cheapest;
+    }
+    div.cheapest:before{
+        content: "\6700\4FBF\5B9C";
+        position: absolute;
+        top: 2px;
+        left: 20px;
+        color: #ff8e26;
+        font-size: 12px;
+    }
+    .interchange{
+        background-color:#f1f1f1;
+    }    
+    /* RWD各種版面 */
+    .show1{
+        min-width:100%;
+        @media screen and (min-width: 768px){
+            min-width: calc(100% /7); 
+            }
+    }
+    .show2{
+        min-width:50%;
+        @media screen and (min-width: 768px){
+            min-width: calc(100% /7); 
+            }
+    }
+    .show3{
+        min-width: 33.33%;
+        @media screen and (min-width: 768px){
+            min-width: calc(100% /7); 
+            }
+    }
+    .show4{
+        min-width: 25%;
+        @media screen and (min-width: 768px){
+            min-width: calc(100% /7); 
+            }
+    }
+    .show1-slide1{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show1; }
+          }
+    }
+    &.show2-slide1{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show2; }
+          }
+    }      
+    &.show2-slide2{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show2; }
+          }
+    } 
+            
+    &.show3-slide1{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show3; }
+          }
+        }
+    &.show3-slide2{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show3; }
+          }
+        }
+    &.show3-slide3{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show3; }
+          }
+        } 
+    
+    &.show4-slide1{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show4; }
+          }
+        }
+    &.show4-slide2{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show4; }
+          }
+        }
+    &.show4-slide3{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show4; }
+          }
+        }
+    &.show4-slide4{
+        @for $i from 1 through 6 {
+            &-#{$i} { left: - $i*$show4; }
+          }
+        }
 }
 
-.slide .interchange{
-    background-color:#f1f1f1;
-}
 
 .goDate{
     position: relative;
     .slide div{
         // border-bottom : 1px solid $border;  
-         .hover{
+         &.hover{
            @include hover;
          }
          &:hover{
@@ -147,33 +257,8 @@ table{
          }
     }
 }
-.slide div.hover{
-    @include hover;
-}
-.backDate .slide div{
-    background-color: #eaedf2;
-}
-.slide div.cheapest:after {
-    content: "";
-    height: 0;
-    width: 0;
-    position: absolute;
-    top: -1px;
-    left: 0;
-    border-top: 10px solid $cheapest;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid $cheapest;
-    }
-   
-.slide div.cheapest:before{
-    content: "\6700\4FBF\5B9C";
-    position: absolute;
-    top: 2px;
-    left: 20px;
-    color: #ff8e26;
-    font-size: 12px;
-}
+
+
 .newYear:before{
     content: "2018";
     display: block;
@@ -185,40 +270,8 @@ table{
     align-self: center;
 }
 
-element.style {
-    display: block;
-    left: 89px;
-}
-.arrow>i {
-    display: none;
-    font-size: 14px;
-}
-.arrow.disable{
-     display: none;
-}
-
-@media screen and (max-width: 768px){
-    .slide{
-        position: absolute; 
-        left:0;
-        /* transition : 0s; */ 
-        /* RWD各種版面 */
-        .show1{
-            min-width:100%;
-        }
-        .show2{
-            min-width:50%;
-        }
-        .show3{
-            min-width: 33.33%;
-        }
-        .show4{
-            min-width: 25%;
-        }
-        
-    }
-  
-    .goDate .arrow{
+.goDate{
+    .arrow{
         cursor: pointer;
         display: block;
         padding: 13px 3px;
@@ -226,14 +279,17 @@ element.style {
         background: hsla(0,0%,67%,.5);
         position: absolute;
         top: 50%;
-        // margin-top : -20px;
+        margin-top : 5px;
         z-index: 1;
         color: #fff;
         width: 20px;
         text-align: center;
+        @media screen and (min-width: 768px){
+            display: none;
+            }
     }
     .arrow.left{
-        left:89px;
+            left:89px;
     }
     .arrow.right{
         right: 0px;
@@ -241,72 +297,17 @@ element.style {
     .arrow>i {
         display: block;
         font-size: 14px;
+        @media screen and (min-width: 768px){
+        display: none;
+        }
     }
     .arrow.disable{
         display: none;
+    }  
     }
-    $show1 : 100%;
-    $show2 : 50%;
-    $show3 :33.33%;
-    $show4 : 25%;
- 
-    .show1-slide1{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show1; }
-          }
-    }
-    .show2-slide1{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show2; }
-          }
-    }      
-    .show2-slide2{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show2; }
-          }
-    } 
-            
-    .show3-slide1{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show3; }
-          }
-        }
-    .show3-slide2{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show3; }
-          }
-        }
-    .show3-slide3{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show3; }
-          }
-        } 
     
-    .show4-slide1{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show4; }
-          }
-        }
-    .show4-slide2{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show4; }
-          }
-        }
-    .show4-slide3{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show4; }
-          }
-        }
-    .show4-slide4{
-        @for $i from 1 through 6 {
-            &-#{$i} { left: - $i*$show4; }
-          }
-        }
-}
-
-
-
-
+    
+  
 
 
 

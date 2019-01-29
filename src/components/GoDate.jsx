@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../Style/main.scss';
-import '../Style/components.1.scss';
+import '../Style/components.scss';
 import ticketInfo from '../json/ticketInfo.json';
 import PropTypes from 'prop-types';
 
